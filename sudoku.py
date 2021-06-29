@@ -322,7 +322,7 @@ if __name__ == "__main__":
     print("Enter the sudoku row by row (top to bottom, -1 → empty):", end="\n\n")
     sudoku_entries = []
     for r in range(9):
-        r_entries = input(f"Enter the row {r} entries as a comma separated list:\n")
+        r_entries = input(f"Enter the row {r} entries as a comma separated tuple:\n")
         sudoku_entries.extend(list(map(int, r_entries.split(","))))
     sudoku = Sudoku(sudoku_entries)
     print("\nPlease verify your starting entries:")
