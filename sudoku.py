@@ -1,4 +1,4 @@
-# Sudoku → japanisches Akronym (griech. akros, onyma = Spitze, Namen)  (ctrl-alt-s)
+# Sudoku → japanisches Akronym (griech. akros, onyma = Spitze, Namen)
 
 # 9x9 grid with 9 3x3 subgrids, each subgrid, row, and column contains the numbers 1..9 once (+ unique solution)
 
@@ -189,7 +189,7 @@ class Sudoku:
 
     def solve(self):
         dq = deque()
-        dq.appendleft(self.entries[:])
+        dq.append(self.entries[:])
         while len(dq):
             """
             print(f"dq: len = {len(dq)}")
@@ -204,7 +204,7 @@ class Sudoku:
                     # print("\nFLAG = 1\n")
                     continue
                 elif flag == 0:  # no new entry (→ dfs)
-                    # finished check
+                    # terminated?
                     if all(entry in legal_entries[1:] for entry in self.entries):
                         dq.clear()
                         # print("\nDone.\n")
@@ -215,7 +215,7 @@ class Sudoku:
                                 possible_entries = self.possible_entries_for_index(index)
                                 for entry in possible_entries:
                                     self.entries[index] = entry
-                                    dq.appendleft(self.entries[:])  # [:] !
+                                    dq.append(self.entries[:])  # [:] !
                                 # print(f"\nFLAG = 0, entries added → len(dq) = {len(dq)}\n")
                                 break
                 else:  # flag = -1, error (← dfs)
@@ -330,7 +330,7 @@ if __name__ == "__main__":
     while True:
         answer = input("Do you want to make a correction? ('yes')\n")
         if answer.lower() in ["yes", '"yes"', '"yes"', "y"]:
-            correction = input("Enter the row, column, and corrected entry as a comma separated list: (0-based)\n")
+            correction = input("Enter the row, column, and corrected entry as a comma separated tuple: (0-based)\n")
             correction = list(map(int, correction.split(",")))
             sudoku.entries[(correction[0]) * 9 + (correction[1])] = correction[2]
             print("\n", sudoku, sep="")

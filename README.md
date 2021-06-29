@@ -1,1 +1,4 @@
 # games
+
+- sudoku
+- bimaru
