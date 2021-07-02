@@ -7,7 +7,7 @@
 
 from collections import deque
 
-legal_entries = ['.', 'o', 'm', 'l', 'r', 'u', 'd', 'x']
+legal_entries = [".", "o", "m", "l", "r", "u", "d", "x"]
 
 # example_entries = (".," * 15 + "o," + ".," * 12 + "m," + ".," * 34 + ".").split(",")
 # example_numbers = [2, 3, 2, 3, 3, 2, 2, 1, 5, 0, 3, 0, 4, 1, 2, 3]  # "subtract" existing ships before entry
@@ -16,13 +16,13 @@ legal_entries = ['.', 'o', 'm', 'l', 'r', 'u', 'd', 'x']
 class Bimaru:
     """
     # list of 64 entries from top-left to bottom-right
-    # list of 16 numbers from top-left (columns (0..7)) to bottom-right (rows (0..7)) → (remaining space)
+    # list of 16 numbers from top-left (columns (0..7)) to bottom-right (rows (0..7)) → (remaining space [!])
     """
     def __init__(self, entries, numbers):
         self.entries = entries[:]
         self.original_entries = entries[:]
         """
-        for index in range(64):  # decrement numbers if there are some
+        for index in range(64):  # decrement numbers if entries[index] not in [".", "x"]
             if entries[index] in ["o", "m", "l", "r", "u", "d"]:
                 row = get_row_from_index(index)
                 column = get_column_from_index(index)
@@ -145,8 +145,8 @@ class Bimaru:
         triple_ships, triple_directions, unfinished_double_ships, unfinished_double_directions = \
             self.find_triple_ships_and_unfinished_double_ships()
         quadruple_ships, quadruple_directions = self.find_quadruple_ships()
-        if b_e(len(single_ships), 4, done) or b_e(len(double_ships), 3, done) or b_e(len(triple_ships), 2, done) or \
-                b_e(len(quadruple_ships), 1, done):
+        if b_ne(len(single_ships), 4, done) or b_ne(len(double_ships), 3, done) or b_ne(len(triple_ships), 2, done) or \
+                b_ne(len(quadruple_ships), 1, done):
             return False
         for single_ship in single_ships:
             surrounding_indices = get_indices_surrounding_ship(single_ship, 1)
@@ -354,7 +354,7 @@ def get_column_from_index(index):
     return index % 8
 
 
-def b_e(x, y, done=False):  # bigger? / (not) equal?
+def b_ne(x, y, done=False):  # bigger? / not equal?
     return x > y if not done else x != y
 
 
@@ -367,7 +367,7 @@ if __name__ == "__main__":
     for r in range(8):
         r_entries = input(f"Enter the row {r} entries as a comma separated tuple:\n")
         bimaru_entries.extend(r_entries.split(","))
-    # remaining space
+    # remaining space [!]
     bimaru_numbers = input("Enter the eight column and eight row numbers as a (length 16) comma separated tuple:\n")
     bimaru = Bimaru(bimaru_entries, bimaru_numbers)
     print("\nPlease verify your starting entries:")
