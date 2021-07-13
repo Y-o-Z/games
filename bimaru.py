@@ -1,4 +1,5 @@
 # Bi-mar-u → Marke der Rätsel Agentur Schweiz (→ schiffli versänke)
+# (..)
 
 # 8x8 grid, position all ships (o,o,o,o,<>,<>,<>,<=>,<=>,<==>) such that each ship has no immediate neighbour
 
@@ -7,7 +8,7 @@
 
 from collections import deque
 
-legal_entries = ['.', 'o', 'm', 'l', 'r', 'u', 'd', 'x']
+legal_entries = [".", "o", "m", "l", "r", "u", "d", "x"]
 
 # example_entries = (".," * 15 + "o," + ".," * 12 + "m," + ".," * 34 + ".").split(",")
 # example_numbers = [2, 3, 2, 3, 3, 2, 2, 1, 5, 0, 3, 0, 4, 1, 2, 3]  # "subtract" existing ships before entry

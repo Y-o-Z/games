@@ -1,4 +1,5 @@
 # Sudoku → japanisches Akronym (griech. akros, onyma = Spitze, Namen)
+# (= dos(denial-of-service)-attack on the brain ..)
 
 # 9x9 grid with 9 3x3 subgrids, each subgrid, row, and column contains the numbers 1..9 once (+ unique solution)
 
