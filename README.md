@@ -1,5 +1,5 @@
 # games
 
-- sudoku
-- bimaru
+- sudoku (9x9)
+- bimaru (8x8)
 
